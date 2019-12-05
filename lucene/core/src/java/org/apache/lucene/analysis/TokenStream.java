@@ -172,6 +172,20 @@ public abstract class TokenStream extends AttributeSource implements Closeable {
   public void end() throws IOException {
     endAttributes(); // LUCENE-3849: don't consume dirty atts
   }
+  
+  /**
+   * This method is called by the consumer before the first token has been
+   * consumed for a new document.
+   * <p>
+   * this method makes it possible to reinitialize the context of an implementation link to a document
+   * ( as a context related to semantic specific information to a language)
+   * <p>
+   * If you override this method, always call {@code super.end()}.
+   * 
+   * @throws IOException If an I/O error occurs
+   */
+  public void first() throws IOException {}
+  
 
   /**
    * This method is called by a consumer before it begins consumption using

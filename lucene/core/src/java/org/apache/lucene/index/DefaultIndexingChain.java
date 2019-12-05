@@ -804,6 +804,10 @@ final class DefaultIndexingChain extends DocConsumer {
        */
       boolean succeededInProcessingField = false;
       try (TokenStream stream = tokenStream = field.tokenStream(docState.analyzer, tokenStream)) {
+        // Initializing the TokenStream in a New Document Context
+        if(first) {
+          stream.first();
+        }
         // reset the TokenStream to the first token
         stream.reset();
         invertState.setAttributeSource(stream);

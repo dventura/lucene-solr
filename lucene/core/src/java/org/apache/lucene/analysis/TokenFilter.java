@@ -69,4 +69,20 @@ public abstract class TokenFilter extends TokenStream {
   public void reset() throws IOException {
     input.reset();
   }
+  
+  
+  /**
+   * {@inheritDoc}
+   * <p>
+   * <b>NOTE:</b> 
+   * The default implementation chains the call to the input TokenStream, so
+   * be sure to call <code>super.first()</code> when overriding this method.
+   */
+  @Override
+  public void first() throws IOException {
+     input.first();
+  }
+  
+  
+  
 }
